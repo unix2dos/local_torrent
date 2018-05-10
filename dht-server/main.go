@@ -41,7 +41,6 @@ func saveTable() error {
 func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 	for _, s := range []string{
 		"127.0.0.1:6881",
-		"172.24.120.28:6881",
 	} {
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {
@@ -101,13 +100,6 @@ func main() {
 		<-ch
 		cancel()
 	}()
-	//go func() {
-	//	if tried, err := s.Bootstrap(); err != nil {
-	//		log.Printf("error bootstrapping: %s", err)
-	//	} else {
-	//		log.Printf("finished bootstrapping: crawled %d addrs", tried)
-	//	}
-	//}()
 	go func() {
 		for {
 			if tried, err := s.Bootstrap(); err != nil {
@@ -115,7 +107,7 @@ func main() {
 			} else {
 				log.Printf("finished bootstrapping: crawled %d addrs", tried)
 			}
-			time.Sleep(time.Second * 10) //此处是不停的让别人回复自己, 让新加入的节点变成好节点
+			time.Sleep(time.Second * 10) //此处是不停的广播, 让新加入的节点变成好节点
 		}
 	}()
 
