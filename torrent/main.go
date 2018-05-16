@@ -121,7 +121,7 @@ func stdoutAndStderrAreSameFile() bool {
 
 func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 	for _, s := range []string{
-		"127.0.0.1:6881", //此处应该是一个死的值, 例如是 dht-server的值
+		"127.0.0.1:16181", //此处应该是一个死的值, 例如是 dht-server的值
 	} {
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {
