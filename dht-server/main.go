@@ -23,7 +23,7 @@ var (
 		Addr      string `help:"local UDP address"`
 	}{
 		TableFile: "/dev/null",
-		Addr:      ":6881",
+		Addr:      ":16181",
 	}
 	s *dht.Server
 )
@@ -40,7 +40,7 @@ func saveTable() error {
 
 func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 	for _, s := range []string{
-		"127.0.0.1:6881",
+		"127.0.0.1:16181",
 	} {
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {
