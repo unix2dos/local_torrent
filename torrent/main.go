@@ -71,7 +71,6 @@ func addTorrents(client *torrent.Client) {
 				}
 				go func() {
 					<-t.GotInfo()
-					//t.Info().AddPath("22")
 				}()
 
 				return t
@@ -88,13 +87,13 @@ func addTorrents(client *torrent.Client) {
 				if err != nil {
 					log.Fatal(err)
 				}
-				//t.Info().AddPath("/Users/liuwei/golang/src")
 				return t
 			}
 		}()
 		torrentBar(t)
 		go func() {
 			<-t.GotInfo()
+			//t.Info().Name = "/Users/liuwei/bak/10G"
 			t.DownloadAll()
 		}()
 	}
@@ -121,7 +120,7 @@ func stdoutAndStderrAreSameFile() bool {
 
 func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 	for _, s := range []string{
-		"172.24.120.28:16181", //此处应该是一个死的值, 例如是 dht-server的值, 最好不要为127.0.0.1
+		"192.168.1.7:16181", //此处应该是一个死的值, 例如是 dht-server的值, 最好不要为127.0.0.1
 	} {
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {
@@ -166,6 +165,7 @@ func main() {
 
 	clientConfig.DisableIPv6 = true
 	clientConfig.DhtStartingNodes = GlobalBootstrapAddrs
+	//clientConfig.DataDir = "/Users/liuwei/bak/"
 	client, err := torrent.NewClient(&clientConfig)
 	if err != nil {
 		log.Fatalf("error creating client: %s", err)
