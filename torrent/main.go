@@ -71,7 +71,6 @@ func addTorrents(client *torrent.Client) {
 				}
 				go func() {
 					<-t.GotInfo()
-					//t.Info().AddPath("22")
 				}()
 
 				return t
@@ -88,13 +87,13 @@ func addTorrents(client *torrent.Client) {
 				if err != nil {
 					log.Fatal(err)
 				}
-				//t.Info().AddPath("/Users/liuwei/golang/src")
 				return t
 			}
 		}()
 		torrentBar(t)
 		go func() {
 			<-t.GotInfo()
+			//t.Info().Name = "/Users/liuwei/bak/10G"
 			t.DownloadAll()
 		}()
 	}
@@ -166,6 +165,7 @@ func main() {
 
 	clientConfig.DisableIPv6 = true
 	clientConfig.DhtStartingNodes = GlobalBootstrapAddrs
+	//clientConfig.DataDir = "/Users/liuwei/bak/"
 	client, err := torrent.NewClient(&clientConfig)
 	if err != nil {
 		log.Fatalf("error creating client: %s", err)
