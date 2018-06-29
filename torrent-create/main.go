@@ -23,6 +23,7 @@ func SizeSum(folder string) (sizeSum int64) {
 var (
 	builtinAnnounceList = [][]string{
 		{"udp://127.0.0.1:6969"},
+		{"http://127.0.0.1:6969/announce"},
 	}
 )
 
