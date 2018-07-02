@@ -1,4 +1,5 @@
 *.DS_Store
 *.torrent.bolt.db
 *.torrent
+*.dmg
 lihaile
