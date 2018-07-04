@@ -20,12 +20,6 @@ func SizeSum(folder string) (sizeSum int64) {
 	return
 }
 
-var (
-	builtinAnnounceList = [][]string{
-		{"https://127.0.0.1:6097/announce"},
-	}
-)
-
 func main() {
 	log.SetFlags(log.Flags() | log.Lshortfile)
 	var args struct {
@@ -45,9 +39,7 @@ func main() {
 		pieceLength = baseSize * multi
 	}
 
-	mi := &metainfo.MetaInfo{
-		AnnounceList: builtinAnnounceList,
-	}
+	mi := &metainfo.MetaInfo{}
 	mi.SetDefaults()
 	info := metainfo.Info{
 		PieceLength: pieceLength,
