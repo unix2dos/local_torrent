@@ -149,10 +149,10 @@ func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	tagflag.Parse(&flags)
-	clientConfig := torrent.Config{
-		Debug: false,
-		Seed:  true,
-	}
+
+	clientConfig := torrent.NewDefaultClientConfig()
+	clientConfig.Debug = false
+	clientConfig.Seed = true
 	if flags.Addr != nil {
 		clientConfig.SetListenAddr(flags.Addr.String())
 	}
@@ -165,8 +165,7 @@ func main() {
 
 	clientConfig.DisableIPv6 = true
 	clientConfig.DhtStartingNodes = GlobalBootstrapAddrs
-	//clientConfig.DataDir = "/Users/liuwei/bak/"
-	client, err := torrent.NewClient(&clientConfig)
+	client, err := torrent.NewClient(clientConfig)
 	if err != nil {
 		log.Fatalf("error creating client: %s", err)
 	}
