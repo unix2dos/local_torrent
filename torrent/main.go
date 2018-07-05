@@ -153,6 +153,10 @@ func main() {
 	clientConfig := torrent.NewDefaultClientConfig()
 	clientConfig.Debug = false
 	clientConfig.Seed = true
+	clientConfig.DisableUTP = true
+	clientConfig.DisableIPv6 = true
+	clientConfig.DhtStartingNodes = GlobalBootstrapAddrs
+
 	if flags.Addr != nil {
 		clientConfig.SetListenAddr(flags.Addr.String())
 	}
@@ -163,8 +167,6 @@ func main() {
 		clientConfig.DownloadRateLimiter = rate.NewLimiter(rate.Limit(flags.DownloadRate), 1<<20)
 	}
 
-	clientConfig.DisableIPv6 = true
-	clientConfig.DhtStartingNodes = GlobalBootstrapAddrs
 	client, err := torrent.NewClient(clientConfig)
 	if err != nil {
 		log.Fatalf("error creating client: %s", err)

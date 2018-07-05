@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fhyx/kinema-client/pkg/base"
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/anacrolix/tagflag"
 	"github.com/anacrolix/torrent/bencode"
@@ -39,7 +41,9 @@ func main() {
 		pieceLength = baseSize * multi
 	}
 
-	mi := &metainfo.MetaInfo{}
+	mi := &metainfo.MetaInfo{
+		AnnounceList: [][]string{GetTrackAddrs()},
+	}
 	mi.SetDefaults()
 	info := metainfo.Info{
 		PieceLength: pieceLength,
@@ -58,4 +62,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+var (
+	builtinAnnounceList = "http://172.25.61.15:16185/announce,udp://127.0.0.1:16185"
+)
+
+func GetTrackAddrs() []string {
+	var sliceAddrs []string
+	addrs := base.GetEnvOrDefault("KS_TORRENT_TRACK_ADDRS", builtinAnnounceList)
+	if addrs != "" {
+		sliceAddrs = strings.Split(addrs, ",")
+	}
+	return sliceAddrs
 }
