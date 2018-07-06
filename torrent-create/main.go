@@ -65,7 +65,7 @@ func main() {
 }
 
 var (
-	builtinAnnounceList = "http://172.25.61.15:16185/announce,udp://127.0.0.1:16185"
+	builtinAnnounceList = "http://172.24.120.65:16185/announce,udp://172.24.120.65:16185"
 )
 
 func GetTrackAddrs() []string {

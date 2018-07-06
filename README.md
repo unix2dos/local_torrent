@@ -26,3 +26,9 @@ go run torrent/main.go 1.torrent
 ```
 go run torrent-magnet/main.go < 1.torrent
 ```
+
+### tracker 启动tracker服务器(没有tracker走dht-server)
+
+```
+go build && ./tracker
+```

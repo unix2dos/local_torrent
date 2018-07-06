@@ -40,7 +40,7 @@ func saveTable() error {
 
 func GlobalBootstrapAddrs() (addrs []dht.Addr, err error) {
 	for _, s := range []string{
-		"172.25.61.15:16185",
+		"172.24.120.65:16185",
 	} {
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {
