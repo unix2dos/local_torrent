@@ -19,6 +19,8 @@ import (
 	// Imported to register as storage drivers.
 	_ "github.com/chihaya/chihaya/storage/memory"
 	_ "github.com/chihaya/chihaya/storage/memorybysubnet"
+
+	_ "test/local_torrent/tracker/redis"
 )
 
 type storageConfig struct {

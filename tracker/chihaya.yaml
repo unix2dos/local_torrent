@@ -100,7 +100,7 @@ chihaya:
 
   # This block defines configuration used for the storage of peer data.
   storage:
-    name: memory
+    name: redis
     config:
       # The frequency which stale peers are removed.
       gc_interval: 3m
