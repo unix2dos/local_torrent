@@ -100,7 +100,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Dir=%s MediaSize=%d PieceLength=%d multi=%d numPieces=%d\n", args.Root, mediaSize, pieceLength, multi, info.NumPieces())
+	log.Printf("Dir=%s MediaSize=%d PieceLength=%d  numPieces=%d\n", args.Root, mediaSize, GetPieceSize(mediaSize), info.NumPieces())
 	mi.InfoBytes, err = bencode.Marshal(info)
 	if err != nil {
 		log.Fatal(err)
