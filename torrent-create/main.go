@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fhyx/kinema-client/pkg/base"
+	"fhyx/lib/osutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -120,7 +120,7 @@ var (
 
 func GetTrackAddrs() []string {
 	var sliceAddrs []string
-	addrs := base.GetEnvOrDefault("KS_TORRENT_TRACK_ADDRS", builtinAnnounceList)
+	addrs := osutil.GetEnvOrDefault("KS_TORRENT_TRACK_ADDRS", builtinAnnounceList)
 	if addrs != "" {
 		sliceAddrs = strings.Split(addrs, ",")
 	}
